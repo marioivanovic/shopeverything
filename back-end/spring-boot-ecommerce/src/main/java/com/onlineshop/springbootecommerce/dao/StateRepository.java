@@ -1,0 +1,10 @@
+package com.onlineshop.springbootecommerce.dao;
+
+import com.onlineshop.springbootecommerce.entity.State;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface StateRepository extends JpaRepository<State, Integer> {
+    
+}

@@ -1,0 +1,30 @@
+<div *ngIf="product" class="plant card" style="width: 14rem">
+  <a
+    [routerLink]="['/products/']"
+    [queryParams]="{ id: product.id }"
+    queryParamsHandling="merge"
+    class="link"
+    ><img
+      src="{{ product?.imageUrl }}"
+      class="card-img-top"
+      [alt]="product?.name"
+  /></a>
+  <div class="card-body">
+    <a queryParamsHandling="merge" class="link"
+      ><h6 class="card-title">{{ product?.name }}</h6></a
+    >
+    <div class="card-content"></div>
+    <div class="d-flex flex-row align-items-end justify-content-between">
+      <div class="card-content">
+        <span class="align-bottom"> {{ product?.unitPrice }} € </span>
+      </div>
+      <a
+        [routerLink]="['/products/']"
+        [queryParams]="{ id: product.id }"
+        queryParamsHandling="merge"
+        class="btn btn-success"
+        >Voir</a
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+GET http://localhost:8080/api/products
+Accept: application/json
+
+<> 2022-02-04T152434.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+<> 2022-02-04T152433.200.json
+
+###
+
+GET http://localhost:80/api/item?id=99
+Accept: application/json
+
+<> 2022-02-04T152433.404.html
+
+###
+
+GET http://localhost:8080/api/products
+Accept: application/json
+
+<> 2022-02-04T152424-1.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+<> 2022-02-04T152424.200.json
+
+###
+
+GET http://localhost:80/api/item?id=99
+Accept: application/json
+
+<> 2022-02-04T152424.404.html
+
+###
+
+GET http://localhost:8080/api/products
+
+<> 2022-02-04T152338.200.json
+
+###
+
+GET http://localhost:8080/api/products
+
+<> 2022-02-04T152317-1.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+<> 2022-02-04T152317.200.json
+
+###
+
+GET http://localhost:8080/api/products
+
+<> 2022-02-04T152309.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+<> 2022-02-04T152308.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+GET http://localhost:8080/api/products
+Accept: application/json
+
+<> 2022-02-04T152215.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+GET http://localhost:8080/api/products
+Accept: application/json
+
+<> 2022-02-04T152159.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+<> 2022-02-04T152100.200.json
+
+###
+
+GET http://localhost:8080/api/categories
+Accept: application/json
+
+<> 2022-02-04T151922.200.json
+
+###
+
+GET http://localhost:80/api/categories
+Accept: application/json
+
+<> 2022-02-04T151914.404.html
+
+###
+

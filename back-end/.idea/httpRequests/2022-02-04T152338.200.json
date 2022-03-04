@@ -1,0 +1,19 @@
+{
+  "_embedded": {
+    "products": []
+  },
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/api/products"
+    },
+    "profile": {
+      "href": "http://localhost:8080/api/profile/products"
+    }
+  },
+  "page": {
+    "size": 20,
+    "totalElements": 0,
+    "totalPages": 0,
+    "number": 0
+  }
+}
