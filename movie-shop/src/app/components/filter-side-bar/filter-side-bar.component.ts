@@ -7,25 +7,27 @@ import { ShopService } from 'src/app/services/shop.service';
   styleUrls: ['./filter-side-bar.component.scss']
 })
 export class FilterSideBarComponent implements OnInit {
-  selectedCategory: string[];
-  @Input() listCategoriesFilter: string[];
+  selectedCategory: any[] = [];
+  @Input() listCategoriesFilter!: any[];
   @Output() filterArray: EventEmitter<any> = new EventEmitter();
 
   constructor(private shopService: ShopService) {
-    this.listCategoriesFilter = [];
-    this.selectedCategory = [];
+    // this.listCategoriesFilter = [];
+    // this.selectedCategory = [];
     // this.shopService.myCategorys(this.selectedCategory)
   }
 
   ngOnInit(): void {}
 
-  public onChangeValue(eventValue: any, categoryName: string): void {
+  public onChangeValue(eventValue: any, categoryId: any): void {
     if (eventValue.target.checked) {
-      console.log(categoryName + " checked");
-      this.selectedCategory.push(categoryName);
+      console.log(eventValue.target.value + ' checked');
+      this.selectedCategory.push(categoryId);
     } else {
-      console.log(categoryName + " unchecked");
-      this.selectedCategory = this.selectedCategory.filter(c => c != categoryName);
+      let index = this.selectedCategory.findIndex(
+        category => category == eventValue.target.value
+      );
+      this.selectedCategory.splice(index, 1);
     }
     // console.log(this.selectedCategory);
     this.filterArray.emit(this.selectedCategory);

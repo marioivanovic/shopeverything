@@ -12,10 +12,11 @@ import { Options, LabelType } from '@angular-slider/ngx-slider';
 export class PageAccueilComponent implements OnInit {
   private data: any | undefined;
   public listProducts!: string[];
-  public listCategories!: string[];
-  public listCategory!: string[];
+  public listCategories!: any[];
+  public listCategory!: any[];
   private subListProduct: Subscription;
-  private subListCategories: Subscription;
+  public listCategoriesFilter!: any[];
+  public subListCategories!: any[];
   public listProduct!: any[];
   public term!: '';
   public listProductFiltered!: any[];
@@ -41,15 +42,15 @@ export class PageAccueilComponent implements OnInit {
 
   constructor(private shopService: ShopService) {
     console.log('table', this.table);
-// PRODUCTS
+    // PRODUCTS
     this.subListProduct = this.shopService.subjectListProduct$.subscribe(
       (response: any) => {
-        console.log("Response =>", response);
+        console.log('Response =>', response);
         this.data = response._embedded;
         this.listProducts = _.uniq(
           this.data.products.map((product: any) => product)
         );
-        console.log("ListProducts =>", this.listProducts);
+        console.log('ListProducts =>', this.listProducts);
 
         //  response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
         this.listProduct = [...this.data.products];
@@ -60,19 +61,27 @@ export class PageAccueilComponent implements OnInit {
     // declancher la req API et la resp est transmise avec un Subject
 
     // CATEGORIES
-    this.subListCategories = this.shopService.subjectCategoriesProduct$.subscribe(
-      (categories: any) => {
-        console.log('Categorie', categories);
-        this.data = categories._embedded;
-        this.listCategories = _.uniq(
-          this.data.products.map((product: any) => product.category)
-        );
+
+    this.subListProduct = this.shopService
+      .getCategories()
+      .subscribe((response: any) => {
+if () {
+
+          return this.data = response._embedded;
+        console.log('Categorie', this.data);
+
+        this.listCategories = this.data.categories;
         console.log('hey', this.listCategories);
 
-        this.listCategories = [...this.data.products];
+        this.listCategories = [...this.data.categories];
         this.listProductFiltered = this.listCategories;
       }
-    );
+
+        } else {
+          return this.listProduct = [...this.data.products];
+        }
+);
+
     // this.shopService.getCategories(id);
   }
 
@@ -130,21 +139,28 @@ export class PageAccueilComponent implements OnInit {
     return arr;
   }
 
-  changeCategory(event: any) {
-    console.log('arrayCat', event);
-    if (event.length !== 0) {
-      this.listProductFiltered = this.listProduct.filter(x =>
-        event.includes(x.breadcrumb_label)
-      );
-      console.log('check >', this.table[0] + ' ' + this.table[1]);
+  changeCategory(categories: any) {
+    console.log('arrayCat', categories);
+    // if (event.length !== 0) {
+    //   this.listProductFiltered = this.listCategory.filter(x =>
+    //     event.includes(x.breadcrumb_label)
+    //   );
+    //   console.log('check >', this.table[0] + ' ' + this.table[1]);
 
-      this.listProductFiltered = this.listProductFiltered.filter(
-        x =>
-          x.unitprice_ati >= this.table[0] && x.unitprice_ati <= this.table[1]
-      );
-    } else {
-      this.listProductFiltered = this.listProduct;
-      window.location.reload();
-    }
+    //   this.listProductFiltered = this.listProductFiltered.filter(
+    //     x =>
+    //       x.unitprice_ati >= this.table[0] && x.unitprice_ati <= this.table[1]
+    //   );
+    // } else {
+    //   this.listProductFiltered = this.listProduct;
+    //   window.location.reload();
+    // }
+
+    console.log('this.', this.listProductFiltered);
+    this.listProductFiltered = this.listProductFiltered.filter(product => {
+        let id = product._links.self.href.split('/')[5];
+        console.log('id=>', id);
+        return categories.includes(parseInt(id));
+      })
   }
 }

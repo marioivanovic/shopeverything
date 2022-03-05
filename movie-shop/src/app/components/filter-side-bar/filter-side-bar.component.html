@@ -9,12 +9,12 @@
         <input
           type="checkbox"
           class="form-check-input"
-          value="{{ category }}"
+          value="{{ category?.categoryName }}"
           id="{{ category }}"
-          (change)="onChangeValue($event, category)"
+          (change)="onChangeValue($event, category.id)"
         />
-        <label for="{{ category }}" class="form-check-label">
-          {{ category }}
+        <label for="{{ category?.categoryName }}" class="form-check-label">
+          {{ category.categoryName }}
         </label>
       </div>
     </div>

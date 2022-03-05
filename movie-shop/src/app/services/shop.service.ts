@@ -100,7 +100,7 @@ export class ShopService {
   }
 
   getCategories(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+    return this.http.get<any[]>(`${this.baseUrl}/categories`);
   }
 
   getCategorie(id: string): Observable<any[]> {
